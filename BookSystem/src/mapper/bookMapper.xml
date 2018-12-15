@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间名使用相关接口的全路径 -->
+<mapper namespace="com.system.dao.BookDao">
+
+	<resultMap type="book" id="BookMapper">
+		<id property="id" column="id"></id>
+		<result property="bookname" column="bookname" />
+		<result property="price" column="price" />
+		<result property="stock" column="stock" />
+		<result property="img" column="img" />
+		<result property="author" column="author" />
+		<result property="state" column="state" />
+	</resultMap>
+
+	<!-- id 的值 必须与接口中的方法名一致 涉及的参数和返回类型，必须和接口中的方法一致 -->
+	<!-- parameterType是传入参数 <select id="findByName" parameterType="string" resultMap="UserMapper"> 
+		SELECT username, password, email FROM user WHERE username=#{name} </select> 
+		<insert id="add" parameterType="user"> INSERT INTO user(username,password,email) 
+		values(#{username},#{password},#{email}) </insert> -->
+
+	<!-- 非搜索模式获取条目总数 -->
+	<select id="getNum" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM book
+	</select>
+
+	<!-- 搜索模式获取条目总数 -->
+	<select id="getWordNum" parameterType="string" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM book WHERE bookname=#{word} OR author=#{word}
+	</select>
+
+	<!-- 非搜索模式获取5条数据 -->
+	<select id="findByNum" resultType="user" resultMap="BookMapper">
+		SELECT * FROM
+		book LIMIT #{0},#{1}
+	</select>
+
+	<!-- 搜索模式获取5条数据 -->
+	<select id="findByNumWord" resultType="user" resultMap="BookMapper">
+		SELECT *
+		FROM
+		(SELECT *
+		FROM book
+		WHERE bookname=#{2} OR
+		author=#{2}) book
+		LIMIT
+		#{0},#{1}
+	</select>
+
+	<select id="isBookExist" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM
+		book
+		WHERE id=#{0}
+	</select>
+
+	<update id="updateState">
+		UPDATE book
+		SET state=#{1}
+		WHERE id=#{0}
+	</update>
+
+	<update id="updateBook">
+		UPDATE book
+		SET
+		bookname=#{1},author=#{2},price=#{3},stock=#{4}
+		WHERE id=#{0}
+	</update>
+
+	<select id="getBigId" resultType="java.lang.Integer">
+		SELECT MAX(id)
+		FROM book
+	</select>
+
+	<select id="isAddBookExist" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM book
+		WHERE bookname=#{0} AND author=#{1} AND price=#{2}
+	</select>
+
+	<insert id="insertBook">
+		INSERT INTO book
+		(bookname,author,price,img,stock,state)
+		VALUES
+		(#{0},#{1},#{2},#{3},#{4},#{5})
+	</insert>
+
+
+</mapper>

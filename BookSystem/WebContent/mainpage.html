@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理系统</title>
+	</head>
+	<link href="res/layer/theme/default/layer.css" type="text/css" rel="stylesheet">
+	<link href="res/alert/css/alert.css" type="text/css" rel="stylesheet">
+	<link href="css/mainpage/mainpage.css" type="text/css" rel="stylesheet">
+	<link href="css/mainpage/bookmag.css" type="text/css" rel="stylesheet">
+	<link href="css/mainpage/usermag.css" type="text/css" rel="stylesheet">
+	<link href="css/mainpage/ordermag.css" type="text/css" rel="stylesheet">
+
+	<script src="res/jquery.min.js"></script>
+	<script src="res/layer/layer.js"></script>
+	<script src="res/alert/js/alert.js"></script>
+	<script src="res/jquery.nicescroll.min.js"></script>
+
+	<body>
+		<!--主容器-->
+		<div id="mainpage">
+			<!--左部内容容器-->
+			<div id="leftcontent">
+				<!--logo-->
+				<div id="logobox">
+					<img id="userlogo" src="img/mainpage/userlogo.png "></img>
+				</div>
+				<!--按钮-->
+				<div id="leftbtn">
+					<div id="bookmag" class="leftbtn">图书管理</div>
+					<div id="ordermag" class="leftbtn">订单管理</div>
+					<div id="usermag" class="leftbtn">用户管理</div>
+				</div>
+			</div>
+			<!--右部容器-->
+			<div id="rightcontent">
+				<!--
+                	作者：1406976140@qq.com
+                	时间：2018-07-16
+                	描述：图书管理
+                -->
+				<div id="book" class="content">
+					<!--头部-->
+					<div class="riheader">
+						<form onSubmit="return SearchTheBook()">
+							<input id="searchbook" class="searchbox" placeholder=" 书籍名或作者名 "></input>
+						</form>
+					</div>
+					<!--横条-->
+					<div class="midbar">
+						<input class="mycheckbox" type="checkbox" onclick="ChangeSelectState(this) " data-no="0" /> <span class="mytxt bookname">书籍名称</span> <span class="mytxt author">作者</span>
+						<span class="mytxt img">封面</span>
+						<span class="mytxt price">价格</span>
+						<span class="mytxt stock">库存</span>
+						<span class="mytxt state">状态</span>
+					</div>
+					<!--内容盒子 -->
+					<div id="bookbox" class="contentbox"></div>
+					<!--页码及按钮盒子-->
+					<div class="pagenumbox">
+						<!--二级页码及按钮盒子-->
+						<div class="senumbox">
+							<div id="pbpage" onclick="PreBookPage()" class="pagebtn">上一页</div>
+							<span id="bpnum" class="pagenum">1</span>
+							<div id="nbpage" onclick="NextBookPage()" class="pagebtn nxt">下一页</div>
+						</div>
+					</div>
+					<!--底部-->
+					<div class="ribottom">
+						<div id="exitbook" onclick="ExitBook()" class="bottomop">退出搜索</div>
+						<div id="addbook" onclick="AddBook()" class="bottomop">添加</div>
+						<div id="upbook" onclick="UpBook()" class="bottomop">上架</div>
+						<div id="debook" onclick="DeleteBook()" class="bottomop">下架</div>
+						<div id="upbook" onclick="UpdateBook()" class="bottomop">更新</div>
+					</div>
+				</div>
+
+				<!--
+                	作者：1406976140@qq.com
+                	时间：2018-07-16
+                	描述：订单管理
+                -->
+				<div id="orders" class="content" hidden>
+					<!--头部-->
+					<div class="riheader">
+						<form onSubmit="return SearchOrder()">
+							<input id="searchorder" class="searchbox" placeholder=" 订单号"></input>
+						</form>
+					</div>
+					<!--横条-->
+					<div class="midbar">
+						<span class="thetext order">订单号</span>
+						<span class="thetext buyer">收件人</span>
+						<span class="thetext thebookname">书籍名称</span>
+						<span class="thetext totalprice">金额</span>
+						<span class="thetext thenum">数量</span>
+						<span class="thetext createtime">创建时间</span>
+						<span class="thetext logistics">物流单号</span>
+						<span class="thetext thestate">状态</span>
+					</div>
+					<!--内容盒子 -->
+					<div id="orderbox" class="contentbox"></div>
+					<!--页码及按钮盒子-->
+					<div class="pagenumbox">
+						<!--二级页码及按钮盒子-->
+						<div class="senumbox">
+							<div id="oppage" onclick="OPPage()" class="pagebtn">上一页</div>
+							<span id="opnum" class="pagenum">1</span>
+							<div id="onpage" onclick="ONPage()" class="pagebtn nxt">下一页</div>
+						</div>
+					</div>
+					<!--底部-->
+					<div class="ribottom">
+						<div id="exitorder" onclick="ExitSearchOrder()" class="bottomop">退出搜索</div>
+						<div id="selectorderbox">
+							<select id="theselect" class="select">
+								<option value="all">全部</option>
+								<option value="no">未发货</option>
+								<option value="yes">已发货</option>
+								<option value="finish">已完成</option>
+							</select>
+							<div id="selectorder" class="select" onclick="SelectTheOrder()">搜索</div>
+						</div>
+					</div>
+				</div>
+
+				<!--
+                	作者：1406976140@qq.com
+                	时间：2018-07-14
+                	描述：用户管理
+                -->
+				<div id="user" class="content" hidden>
+					<!--头部-->
+					<div class="riheader">
+						<form onSubmit="return SearchUser()">
+							<input id="searchuser" class="searchbox" placeholder=" 用户名"></input>
+						</form>
+					</div>
+					<!--横条-->
+					<div class="midbar">
+						<input class="usercheckbox" type="checkbox" onclick="SelectUser(this)" data-no="0"> </input>
+						<span class="username">用户名</span>
+						<span class="accountstate">账户状态</span>
+					</div>
+
+					<!--内容盒子 -->
+					<div id="userbox" class="contentbox"></div>
+
+					<!--页码及按钮盒子-->
+					<div class="pagenumbox">
+						<!--二级页码及按钮盒子-->
+						<div class="senumbox">
+							<div id="userppage" onclick="UPPage()" class="pagebtn">上一页</div>
+							<span id="usernum" class="pagenum">1</span>
+							<div id="usernpage" onclick="UNPage()" class="pagebtn nxt">下一页</div>
+						</div>
+					</div>
+					<!--底部-->
+					<div class="ribottom">
+						<div id="exituser" onclick="ExitSearchUser()" class="bottomop">退出搜索</div>
+						<div id="deuser" onclick="DeleteUser()" class="bottomop">删除</div>
+						<div id="unlockuser" onclick="UnlockUser()" class="bottomop">解锁</div>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：1406976140@qq.com
+            	时间：2018-07-14
+            	描述：上传图片弹窗
+            -->
+			<div id="uploadpic" class='nohide' hidden>
+				<div id="uploadpictitle" class="up nohide">建议图片尺寸比例为宽:高为5:6</div>
+				<div id="showpicbox" class='up nohide'>
+					<img id="showpic" class="nohide" src="img/book/default.png" width="200px" height="240px"></img>
+				</div>
+				<form id="theform" class="nohide" name="theform" enctype="multipart/form-data">
+					<input id="bookpicbox" class="nohide" name="bookpicbox" type="file" onchange="ShowPic(this)" accept="image/x-png" hidden></input>
+				</form>
+				<div id="showpicbtn" class="up nohide">
+					<div id="select" class="showbtn nohide" onclick="SelectPic()">选择</div>
+					<div id="upload" class="showbtn nohide" onclick="UploadIt()">上传</div>
+				</div>
+			</div>
+
+			<!--
+	                        作者：1406976140@qq.com
+	                        时间：2018-07-14
+	                        描述：添加数据弹窗
+            -->
+			<div id="addbox" class="adhide" hidden>
+				<div id="addinput" class="theadd adhide">
+					<input id="addname" class="addinput adhide" placeholder=" 书籍名称 "></input>
+					<input id="addauthor" class="addinput adhide" placeholder=" 作者"></input>
+					<input id="addprice" class="addinput adhide" placeholder=" 价格"></input>
+					<input id="addstock" class="addinput adhide" placeholder=" 库存"></input>
+				</div>
+				<div id="addtitle" class="theadd adhide">建议图片尺寸比例为宽:高为5:6</div>
+				<div id="addimgbox" class="theadd adhide">
+					<input id="addse" class="adhide" name="addse" type="file" onchange="AddShowPic(this)" accept="image/x-png" hidden></input> <img id="addimg" class="adhide" src="img/book/default.png" width="200px" height="240px"></img>
+				</div>
+				<div id="myaddbtn" class="theadd adhide">
+					<div id="selectpic" class="myaddbtn adhide" onclick="AddSelect()">选择</div>
+					<div id="mybook" class="myaddbtn adhide" onclick="StartAddBook()">添加</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script src="js/init/initmainpage.js"></script>
+	<script src="js/mainpage/bookmag.js"></script>
+	<script src="js/mainpage/ajaxbookmag.js"></script>
+	<script src="js/mainpage/bookmagevent.js"></script>
+	<script src="js/mainpage/usermag.js"></script>
+	<script src="js/mainpage/usermagevent.js"></script>
+	<script src="js/mainpage/ajaxusermag.js"></script>
+	<script src="js/mainpage/ordermag.js"></script>
+	<script src="js/mainpage/ordermagevent.js"></script>
+	<script src="js/mainpage/ajaxordermag.js"></script>
+
+</html>

@@ -1,0 +1,5 @@
+$(function() {
+	InitBookMag();
+	InitUserMag();
+	InitOrderMag();
+});

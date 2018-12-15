@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+/*midbar的通用字体属性*/
+
+.thetext {
+	color: #475b6f;
+	font-size: 15px;
+	width: 60px;
+	margin: auto;
+}
+
+
+/*收件人*/
+
+.buyer {
+	width: 80px;
+}
+
+
+/*书籍名称*/
+
+.thebookname {
+	width: 80px;
+}
+
+
+/*金额*/
+
+.totalprice {
+	width: 40px;
+	text-align: center;
+}
+
+
+/*创建时间*/
+
+.createtime {
+	width: 80px;
+}
+
+
+/*物流单号*/
+
+.logistics {
+	width: 80px;
+}
+
+
+/*状态*/
+
+.thestate {
+	width: 50px;
+	text-align: center;
+}
+
+
+/*数量*/
+
+.thenum {
+	width: 40px;
+	text-align: center;
+}
+
+
+/*选择器*/
+
+#selectorderbox {
+	position: relative;
+	float: left;
+	width: 160px;
+	height: 32px;
+	margin: auto;
+}
+
+
+/*选择器和查询按钮*/
+
+.select {
+	position: relative;
+	float: left;
+	width: 80px;
+	height: 32px;
+	font-size: 16px;
+	margin: auto;
+}
+
+
+/*查询按钮*/
+
+#selectorder {
+	text-align: center;
+	line-height: 32px;
+	background-color: #3470a3;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+#selectorder:hover {
+	cursor: pointer;
+	background-color: #5496cd;
+}
+
+
+/*订单列表属性*/
+
+.order-item {
+	position: relative;
+	width: 100%;
+	height: 80px;
+	display: flex;
+	align-items: center;
+}

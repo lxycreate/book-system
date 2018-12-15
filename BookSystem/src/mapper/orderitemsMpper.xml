@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间名使用相关接口的全路径 -->
+<mapper namespace="com.system.dao.OrderItemsDao">
+
+	<resultMap type="orderitems" id="OrderItemsMapper">
+		<id property="id" column="id"></id>
+		<result property="orderid" column="orderid" />
+		<result property="bookid" column="bookid" />
+		<result property="num" column="num" />
+	</resultMap>
+
+	<!--检查书籍是否在订单里 -->
+	<select id="isBookInOrders" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM
+		orderitems
+		WHERE bookid=#{0}
+	</select>
+
+	<!-- 获取id -->
+	<select id="getId" resultType="orderitems">
+		SELECT * FROM orders
+		LIMIT
+		#{0},#{1}
+	</select>
+
+	<!-- 获取id -->
+	<select id="getIdByState" resultType="orderitems">
+		SELECT * FROM orders
+		WHERE
+		state=#{2}
+		LIMIT
+		#{0},#{1}
+	</select>
+
+	<!-- 获取订单数据 -->
+	<select id="getOrderItems" resultType="orderitems">
+		SELECT
+		orders.id,orders.orders,orders.createtime,orders.logistics,orders.state,book.bookname,book.price,orderitems.num,user.username
+		FROM orders,user,orderitems,book
+		WHERE orderitems.orderid = orders.id
+		and orderitems.bookid = book.id and orders.uid = user.id and
+		orders.id=#{0}
+	</select>
+
+
+</mapper>

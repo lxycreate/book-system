@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间名使用相关接口的全路径 -->
+<mapper namespace="com.system.dao.OrderItemsDao">
+	<resultMap type="orders" id="OrdersMapper">
+		<id property="id" column="id"></id>
+		<result property="uid" column="uid" />
+		<result property="totalprice" column="totalprice" />
+		<result property="createtime" column="createtime" />
+		<result property="state" column="state" />
+		<result property="ordernum" column="ordernum" />
+		<result property="logistics" column="logistics" />
+		<result property="orders" column="orders" />
+	</resultMap>
+
+	<!-- 获取数据总量 -->
+	<select id="getOrderNum" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM orders
+	</select>
+
+
+	<!-- 获取不同状态订单的数据总量 -->
+	<select id="getOrderNumByState" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM
+		orders
+		WHERE state=#{0}
+	</select>
+
+	<!-- 查询订单是否存在 -->
+	<select id="isOrderExist" parameterType="string" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM orders
+		WHERE orders=#{0}
+	</select>
+
+	<!-- 获取id -->
+	<select id="getIdByWord" parameterType="string" resultType="java.lang.Integer">
+		SELECT id
+		FROM orders
+		WHERE
+		orders=#{0}
+	</select>
+
+	<!-- 是否存在订单 -->
+	<select id="isOrderExistById" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM
+		orders
+		WHERE
+		id=#{0}
+	</select>
+
+	<!-- 更新订单 -->
+	<update id="updateOrder">
+		UPDATE orders
+		SET state=#{1},logistics=#{2}
+		WHERE
+		id=#{0}
+	</update>
+</mapper>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>登录</title>
+	</head>
+	<link href="css/login.css" type="text/css" rel="stylesheet">
+	<link href="css/register.css" type="text/css" rel="stylesheet">
+	<link href="res/alert/css/alert.css" type="text/css" rel="stylesheet">
+	<script src="res/jquery.min.js"></script>
+	<script src="res/alert/js/alert.js"></script>
+
+
+<!--
+	作者：1406976140@qq.com
+	时间：2018-07-08
+	描述：页面主要分三个部分，mainbox下包含header（头部两个按钮的容器）和nxtbox
+	（包含loginbox和registerbox）
+-->
+	<body>
+		<!--整个页面-->
+		<div id="loginpage">
+			<!--内容容器-->
+			<div id="mainbox">
+				<!--头部-->
+				<div id="header">
+					<div id="headbtn">
+						<div id="quicklg" class="quick">快速登录</div>
+						<div id="quickre" class="quick">快速注册</div>
+					</div>
+					<div id="headbar" class="head"></div>
+				</div>
+				<!--包含loginbox和registerbox-->
+				<div id="nxtbox">
+					<!--登录相关输入框的父类容器-->
+					<div id="loginbox">
+						<div id="namebox" class="box">
+							<input type="text" id="name" class="intxt" placeholder=" 用户名"></input>
+							<div id="nametip" class="tip" hidden>用户名不能为空</div>
+						</div>
+						<div id="psdbox" class="box">
+							<input type="password" id="psd" class="intxt" oncopy="return false" placeholder=" 密码"></input>
+							<div id="psdtip" class="tip" hidden>密码不能为空</div>
+						</div>
+						<div id="loginbtn" class="box">登录</div>
+					</div>
+					<!--注册相关输入框的父类容器-->
+					<div id="registerbox">
+						<div id="rename" class="box">
+							<input id="renametxt" class="intxt" placeholder=" 用户名"></input>
+							<div id="renametip" class="tip" hidden>用户名不能为空</div>
+						</div>
+						<div id="email" class="box">
+							<input id="emailtxt" class="intxt" placeholder=" 邮箱"></input>
+							<div id="emailtip" class="tip" hidden>邮箱不能为空</div>
+						</div>
+						<div id="repsd" class="box">
+							<input type="password" id="repsdtxt" class="intxt" oncopy="return false" placeholder=" 密码"></input>
+							<div id="repsdtip" class="tip" hidden>密码不能为空</div>
+						</div>
+						<div id="againpsd" class="box">
+							<input type="password" id="againpsdtxt" class="intxt" oncopy="return false" placeholder=" 确认密码"></input>
+							<div id="againpsdtip" class="tip" hidden>密码不能为空</div>
+						</div>
+						<div id="registerbtn" class="box">注册</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/init/initlogin.js"></script>
+	<script src="js/login/login.js"></script>
+	<script src="js/login/ajaxlogin.js"></script>
+	<script src="js/register/register.js"></script>
+
+</html>

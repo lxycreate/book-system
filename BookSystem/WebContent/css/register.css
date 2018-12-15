@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+/*注册页面的容器*/
+
+#registerbox {
+	position: absolute;
+	float: left;
+	left: -340px;
+	width: 100%;
+	height: 460px;
+}
+
+
+/*注册按钮*/
+
+#registerbtn {
+	top: 50px;
+	margin-left: 70px;
+	width: 207px;
+	color: rgba(0, 0, 0, 0.7);
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: lightskyblue;
+	border-radius: 3px;
+}
+
+#registerbtn:hover {
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.9);
+	background-color: deepskyblue;
+}
